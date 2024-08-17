@@ -1,0 +1,40 @@
+[package]
+name = "webgpu-shaders"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+
+[features]
+default = ["std"]
+
+no_std = ["once_cell/race", "once_cell/alloc"]
+std = ["once_cell/std", "winter-math/std"]
+
+[dependencies]
+once_cell = { version = "1.15", default-features = false }
+winter-math = { version = "0.9", default-features = false }
+
+wgpu = { version = "22.1.0",  default-features = true, features = ["wgsl","webgpu"] }
+bytemuck = { version = "1.15.0" }
+flume = { version = "0.11.0" }
+elsa = { version = "1.9" }
+
+
+[target.'cfg(target_family = "wasm")'.dev-dependencies]
+wasm-bindgen-test = "0.3"
+wasm-bindgen-futures = "0.4"
+wasm-bindgen = "0.2"
+wee_alloc = "0.4"
+console_error_panic_hook = "0.1"
+
+[target.'cfg(not(target_family = "wasm"))'.dev-dependencies]
+criterion = "0.5"
+
+[dev-dependencies]
+# miden-crypto = "0.9"
+miden-crypto = { git = "https://github.com/0xPolygonMiden/crypto", rev = "b06cfa3c035ada8122a405a72d2e4b2ad1a89b47"}
+pollster = "0.3"
+winter-crypto = "0.9"

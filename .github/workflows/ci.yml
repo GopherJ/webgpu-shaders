@@ -1,0 +1,44 @@
+name: CI
+# Based on https://github.com/recmo/uint/blob/main/.github/workflows/ci.yml
+
+on: [push, pull_request]
+
+env:
+  CARGO_TERM_COLOR: always
+  # Skip incremental build and debug info generation in CI
+  CARGO_INCREMENTAL: 0
+  CARGO_PROFILE_DEV_DEBUG: 0
+
+jobs:
+  test:
+    name: Test
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - name: Cache build
+        uses: Swatinem/rust-cache@v1
+        with:
+          key: cache-v1
+      - run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - name: Install Firefox
+        uses: browser-actions/setup-firefox@latest
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: stable
+          install-chromedriver: true
+      - name: Run wasm tests
+        run: |
+          wasm-pack test --release --headless --firefox --features webgpu,no_std
+          wasm-pack test --release --headless --chrome --features webgpu,no_std
+      - name: Run webgpu tests
+        run: |
+          cargo test --release --no-default-features --features webgpu --features no_std -- --test-threads 1 --nocapture
+          cargo test --release --no-default-features --features webgpu --features std -- --test-threads 1 --nocapture
