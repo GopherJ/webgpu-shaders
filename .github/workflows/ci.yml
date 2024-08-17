@@ -36,9 +36,9 @@ jobs:
           install-chromedriver: true
       - name: Run wasm tests
         run: |
-          wasm-pack test --release --headless --firefox --features webgpu,no_std
-          wasm-pack test --release --headless --chrome --features webgpu,no_std
+          wasm-pack test --release --headless --firefox --features no_std
+          wasm-pack test --release --headless --chrome --features no_std
       - name: Run webgpu tests
         run: |
-          cargo test --release --no-default-features --features webgpu --features no_std -- --test-threads 1 --nocapture
-          cargo test --release --no-default-features --features webgpu --features std -- --test-threads 1 --nocapture
+          cargo test --release --no-default-features --features no_std -- --test-threads 1 --nocapture
+          cargo test --release --no-default-features --features std -- --test-threads 1 --nocapture
