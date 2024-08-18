@@ -1213,7 +1213,7 @@ fn rpo_permute(){
   input[9] = row_or_leaf_inputs[row_input_index+1][1];
   input[10] = row_or_leaf_inputs[row_input_index+1][2];
   input[11] = row_or_leaf_inputs[row_input_index+1][3];
-  rpo_permute();
+  // rpo_permute();
   row_hash_state[i][0] = input[0];
   row_hash_state[i][1] = input[1];
   row_hash_state[i][2] = input[2];

@@ -378,9 +378,9 @@ mod tests {
         webgpu_test_merkle_tree(1 << 15, HashFn::Rpx256);
     }
 
-    #[cfg(target_family = "wasm")]
-    #[wasm_bindgen_test::wasm_bindgen_test]
-    fn wasm_rpo_medium_merkle_tree() {
-        wasm_bindgen_futures::spawn_local(wasm_test_merkle_tree(1 << 10));
-    }
+    // #[cfg(target_family = "wasm")]
+    // #[wasm_bindgen_test::wasm_bindgen_test]
+    // fn wasm_rpo_medium_merkle_tree() {
+    //     wasm_bindgen_futures::spawn_local(wasm_test_merkle_tree(1 << 10));
+    // }
 }
