@@ -285,9 +285,9 @@ mod tests {
         webgpu_test_row_hash(1 << 20, HashFn::Rpx256);
     }
 
-    // #[cfg(target_family = "wasm")]
-    // #[wasm_bindgen_test::wasm_bindgen_test]
-    // fn wasm_rpo_from_medium_sized_rows() {
-    //     wasm_bindgen_futures::spawn_local(wasm_test_row_hash(1 << 5));
-    // }
+    #[cfg(target_family = "wasm")]
+    #[wasm_bindgen_test::wasm_bindgen_test]
+    fn wasm_rpo_from_medium_sized_rows() {
+        wasm_bindgen_futures::spawn_local(wasm_test_row_hash(1 << 5));
+    }
 }
