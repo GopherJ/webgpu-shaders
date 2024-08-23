@@ -45,7 +45,7 @@ jobs:
         run: |
           set -e
 
-          curl -L --retry 5 https://github.com/gfx-rs/ci-build/releases/download/build18/mesa-$23.3.1-linux-x86_64.tar.xz -o mesa.tar.xz
+          curl -L --retry 5 https://github.com/gfx-rs/ci-build/releases/download/build18/mesa-23.3.1-linux-x86_64.tar.xz -o mesa.tar.xz
           mkdir mesa
           tar xpf mesa.tar.xz -C mesa
 
