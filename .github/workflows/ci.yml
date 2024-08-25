@@ -68,7 +68,18 @@ jobs:
 
       - name: Run wasm tests
         run: |
-          WASM_BINDGEN_TEST_TIMEOUT=3600 wasm-pack test --release --headless --firefox --features no_std
+          cat <<- EOF > webdriver.json
+          {
+            "moz:firefoxOptions": {
+              "prefs": {
+                "dom.max_script_run_time": 0,
+                "dom.max_chrome_script_run_time": 0
+              },
+              "args": ["-no-remote"]
+            },
+            "goog:chromeOptions": { "args": [ "disable-timeouts-for-profiling" ]
+          }
+          EOF
           WASM_BINDGEN_TEST_TIMEOUT=3600 wasm-pack test --release --headless --chrome --features no_std
       - name: Run webgpu tests
         run: |
