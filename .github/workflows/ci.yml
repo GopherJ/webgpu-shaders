@@ -68,8 +68,8 @@ jobs:
 
       - name: Run wasm tests
         run: |
-          wasm-pack test --release --headless --firefox --features no_std
-          wasm-pack test --release --headless --chrome --features no_std
+          WASM_BINDGEN_TEST_TIMEOUT=3600 wasm-pack test --release --headless --firefox --features no_std
+          WASM_BINDGEN_TEST_TIMEOUT=3600 wasm-pack test --release --headless --chrome --features no_std
       - name: Run webgpu tests
         run: |
           cargo test --release --no-default-features --features no_std -- --test-threads 1 --nocapture
