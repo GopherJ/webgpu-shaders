@@ -77,7 +77,7 @@ jobs:
               },
               "args": ["-no-remote"]
             },
-            "goog:chromeOptions": { "args": [ "disable-timeouts-for-profiling" ]
+            "goog:chromeOptions": { "args": [ "disable-timeouts-for-profiling" ] }
           }
           EOF
           WASM_BINDGEN_TEST_TIMEOUT=3600 wasm-pack test --release --headless --chrome --features no_std
